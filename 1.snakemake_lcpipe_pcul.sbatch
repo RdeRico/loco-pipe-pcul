@@ -42,6 +42,7 @@ SOFTWARE_DIR=/projects/c838048135@colostate.edu/soft
 snakemake \
   --use-conda \
   --conda-frontend mamba \
+  --conda-prefix /projects/c838048135@colostate.edu/miniconda3/envs/ \
   --directory $DIR \
   --rerun-triggers mtime \
   --scheduler greedy \
