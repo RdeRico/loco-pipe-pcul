@@ -58,14 +58,14 @@ global:
 
   # Full path of the project base directory. 
   # This folder should contain subfolders such as "config" and "docs".
-  basedir: "/scratch/c838048135@colostate.edu/pelobates_plasticity/loco-pipe-pcul"
+  basedir: "/scratch/alpine/c838048135@colostate.edu/pelobates_plasticity/loco-pipe-pcul"
   
   # Full path of the reference genome.
   # The reference genome should be in fasta format. Under the current version, we recommend reference genome 
   # to be approximately at chromosome level. In other words, we advice against a highly fragmented reference genome
   # (e.g. L80 > 100). Due to the fact that many downstream analyses are performed at chromosome/scaffold/contig level,
   # having a highly-fragmented reference genome will create too many parallel jobs and might put cluster in high stress.
-  reference: "/scratch/c838048135@colostate.edu/pelobates_plasticity/mega-non-model-wgs-snakeflow/resources/genome.fasta"
+  reference: "/scratch/alpine/c838048135@colostate.edu/pelobates_plasticity/mega-non-model-wgs-snakeflow/resources/genome.fasta"
 
   # Full path of the folder in which R scripts required for the pipeline are saved (i.e. you will need to change the 
   # "/path/to/" part to the path where loco-pipe is downloaded on your computer.)
