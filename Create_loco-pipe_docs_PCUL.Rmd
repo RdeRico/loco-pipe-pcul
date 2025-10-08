@@ -1,0 +1,49 @@
+---
+title: "Create loco-pipe docs PCUL"
+author: "Joan Ferrer Obiol & Rafa"
+date: "2025-09-29"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Sample table
+We'll start by loading the population assignments file
+```{r, message=FALSE, warning=FALSE}
+library(here)
+library(tidyverse)
+
+
+
+breeding <- read_csv("gen_samples.csv") %>%
+  dplyr::select(sample_name,population)
+
+breeding <- breeding %>%
+  rename(sample=sample_name) %>%
+  rename(Population=population) %>%
+  mutate(bam=paste0("/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/",sample,".bam")) %>%
+  dplyr::select(sample,bam,Population) %>%
+  rename(sample_name=sample)
+
+write_tsv(breeding, file = "docs/PCUL_sample_table.tsv")
+```
+
+## inds_list file in .txt format for ngsrelate
+```{r}
+#inds <- breeding %>% select(sample_name)
+
+#write_tsv(inds, file = "ngsrelate/inds_list.txt", col_names = FALSE)
+```
+
+
+
+## Chromosome tables
+```{bash}
+cat GCA_933207985.1_aPelCul1.1_chrom_genomic.fna.fai | cut -f1 > ~/Nextcloud2/Rafa_PhD/pelobates_genomes/loco-pipe-pcul/docs/chr_table.PCUL.txt
+cat GCA_933207985.1_aPelCul1.1_chrom_genomic.fna.fai | awk '$2>100000' | cut -f1 > ~/Nextcloud2/Rafa_PhD/pelobates_genomes/loco-pipe-pcul/docs/chr_table.PCUL_more100kb.txt
+cat GCA_933207985.1_aPelCul1.1_chrom_genomic.fna.fai | awk '$2>3000000' | cut -f1 > ~/Nextcloud2/Rafa_PhD/pelobates_genomes/loco-pipe-pcul/docs/chr_table.PCUL_more3Mb.txt
+cat GCA_933207985.1_aPelCul1.1_chrom_genomic.fna.fai | grep "OW" | cut -f1 > ~/Nextcloud2/Rafa_PhD/pelobates_genomes/loco-pipe-pcul/docs/chr_table.PCUL_onlychromosomes.txt
+#cat GCF_014839835.1_bDryPub1.pri_genomic.fna.gz.fai | grep "NC_" | grep -vE 'NC_071656.1|NC_071657.1' | cut -f1 > /Users/apple/Dropbox/Postdoc_Colorado/convergence_GEA/dataset/BGP_species/YBSA/chr_table.DOWO_onlychromosomes_noZW.txt
+```
