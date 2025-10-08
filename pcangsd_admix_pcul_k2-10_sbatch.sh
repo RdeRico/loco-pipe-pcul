@@ -21,7 +21,7 @@ eig=$((SLURM_ARRAY_TASK_ID - 1))
 
 # Run pcangsd --admix
 for i in {1..5}; do
-  \time pcangsd --beagle $DIR/angsd/snp_calling_global/combined.subsetted.beagle.gz --threads 8 --out $DIR/pcangsd_admix/PCUL_pcangsd_admix_eig${eig}K${SLURM_ARRAY_TASK_ID}${i}_alpha0 -e $eig --iter 2000 --admix --admix_alpha 0 --admix_seed $RANDOM
+  time pcangsd --beagle $DIR/angsd/snp_calling_global/combined.subsetted.beagle.gz --threads 8 --out $DIR/pcangsd_admix/PCUL_pcangsd_admix_eig${eig}K${SLURM_ARRAY_TASK_ID}${i}_alpha0 -e $eig --iter 2000 --admix --admix_alpha 0 --admix_seed $RANDOM
 done
 
-\time pcangsd --beagle $DIR/angsd/snp_calling_global/combined.subsetted.beagle.gz --threads 8 --out $DIR/pcangsd_admix/PCUL_pcangsd_admix_eig${eig}_K${SLURM_ARRAY_TASK_ID}_alpha10000 -e $eig --iter 2000 --admix --admix_alpha 10000
+time pcangsd --beagle $DIR/angsd/snp_calling_global/combined.subsetted.beagle.gz --threads 8 --out $DIR/pcangsd_admix/PCUL_pcangsd_admix_eig${eig}_K${SLURM_ARRAY_TASK_ID}_alpha10000 -e $eig --iter 2000 --admix --admix_alpha 10000
