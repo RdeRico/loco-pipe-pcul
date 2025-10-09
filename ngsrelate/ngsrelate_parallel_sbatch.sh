@@ -16,7 +16,7 @@
 # Set up directory and activate conda environment
 DIR=/scratch/alpine/c838048135@colostate.edu/pelobates_plasticity/ngsrelate
 BAMS=$DIR/bamlist.txt
-CHR_FILE=$DIR/chr_table.PCUL_onlychromosomes_.txt
+CHR_FILE=$DIR/chr_table.PCUL_onlychromosomes.txt
 
 eval "$(conda shell.bash hook)"
 conda activate angsd_lcpipe
