@@ -15,7 +15,7 @@ RT-195	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-mode
 RT-221	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-221.bam	VDG
 RT-225	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-225.bam	MDC
 RT-227	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-227.bam	OGV
-RT-232	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-232.bam	DÑN
+RT-232	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-232.bam	DNN
 RT-238	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-238.bam	VDM
 RT-246	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-246.bam	ANV
 RT-250	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-250.bam	VDG
@@ -35,7 +35,7 @@ RT-287	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-mode
 RT-292	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-292.bam	GDS
 RT-295	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-295.bam	BRC
 RT-297	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-297.bam	VDB
-RT-298	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-298.bam	SDÑ
+RT-298	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-298.bam	SDN
 RT-304	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-304.bam	VDB
 RT-306	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-306.bam	GDS
 RT-309	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-309.bam	SCD
@@ -43,7 +43,7 @@ RT-310	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-mode
 RT-312	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-312.bam	BRC
 RT-32	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-32.bam	SBC
 RT-320	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-320.bam	VDM
-RT-329	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-329.bam	SDÑ
+RT-329	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-329.bam	SDN
 RT-33	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-33.bam	SBC
 RT-334	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-334.bam	ANV
 RT-336	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-336.bam	VDM
@@ -89,7 +89,7 @@ RT-533	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-mode
 RT-536	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-536.bam	CAN
 RT-538	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-538.bam	VMC
 RT-539	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-539.bam	CAN
-RT-541	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-541.bam	DÑN
+RT-541	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-541.bam	DNN
 RT-553	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-553.bam	SER
 RT-555	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-555.bam	MNB
 RT-557	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-557.bam	ACB
@@ -106,9 +106,9 @@ RT-572	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-mode
 RT-579	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-579.bam	VAL
 RT-581	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-581.bam	HOM
 RT-583	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-583.bam	MIN
-RT-588	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-588.bam	DÑN
+RT-588	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-588.bam	DNN
 RT-595	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-595.bam	TOR
-RT-602	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-602.bam	DÑN
+RT-602	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-602.bam	DNN
 RT-613	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-613.bam	SER
 RT-615	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-615.bam	SER
 RT-618	/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/RT-618.bam	ALV
