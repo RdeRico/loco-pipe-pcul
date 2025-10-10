@@ -2,7 +2,7 @@
 #SBATCH --get-user-env
 #SBATCH --nodes=1
 #SBATCH --time=10:00:00
-#SBATCH --partition=amilan128c,amilan
+#SBATCH --partition=amilan
 #SBATCH --qos=normal
 #SBATCH --ntasks=48
 #SBATCH --mem=180000
