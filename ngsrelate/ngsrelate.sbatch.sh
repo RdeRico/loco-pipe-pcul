@@ -5,7 +5,7 @@
 #SBATCH --partition=amilan
 #SBATCH --qos=normal
 #SBATCH --ntasks=48
-#SBATCH --mem=90000
+#SBATCH --mem=60000
 #SBATCH --mail-type=end
 #SBATCH --mail-user=rafa.ricomillan@colostate.edu
 #SBATCH --job-name=PCUL_ngsrelate
