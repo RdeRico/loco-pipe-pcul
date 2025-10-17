@@ -4,7 +4,7 @@
 #SBATCH --time=10:00:00
 #SBATCH --partition=amilan
 #SBATCH --qos=normal
-#SBATCH --ntasks=48
+#SBATCH --ntasks=32
 #SBATCH --mem=60000
 #SBATCH --mail-type=end
 #SBATCH --mail-user=rafa.ricomillan@colostate.edu
