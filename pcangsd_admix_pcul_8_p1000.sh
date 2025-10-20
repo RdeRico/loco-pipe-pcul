@@ -21,4 +21,4 @@ eig=$((SLURM_ARRAY_TASK_ID - 1))
 
 # Run pcangsd --admix
 
-time pcangsd --beagle scratch/alpine/c838048135\@colostate.edu/pelobates_plasticity/loco-pipe-pcul/angsd/snp_calling_global/combined.subsetted.beagle.gz --threads 8 --out scratch/alpine/c838048135\@colostate.edu/pelobates_plasticity/loco-pipe-pcul/pcangsd_admix/PCUL_pcangsd_admix_eig${eig}_K${SLURM_ARRAY_TASK_ID}_alpha10000 -e $eig --iter 2000 --admix --admix_alpha 10000
+time pcangsd --beagle $DIR/angsd/snp_calling_global/combined.subsetted.beagle.gz --threads 8 --out $DIR/pcangsd_admix/PCUL_pcangsd_admix_eig${eig}_K${SLURM_ARRAY_TASK_ID}_alpha10000 -e $eig --iter 2000 --admix --admix_alpha 10000
