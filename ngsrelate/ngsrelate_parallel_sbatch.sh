@@ -5,8 +5,8 @@
 #SBATCH --partition=amilan,amilan128c
 #SBATCH --qos=normal
 #SBATCH --ntasks=8
-#SBATCH --mem=29800
-#SBATCH --array=1-14  # Adjust based on your number of chromosomes
+#SBATCH --mem=64000
+#SBATCH --array=1-7  # Adjust based on your number of chromosomes
 #SBATCH --mail-type=end
 #SBATCH --mail-user=rafa.ricomillan@colostate.edu
 #SBATCH --job-name=PCUL_ngsrelate_parallel
