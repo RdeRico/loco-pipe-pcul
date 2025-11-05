@@ -17,7 +17,7 @@ DIR=/scratch/alpine/c838048135@colostate.edu/pelobates_plasticity/ngsrelate
 BAMS=$DIR/bamlist.txt
 INDS=$DIR/inds_list.txt
 
-eval "$(conda shell.bash hook)"
+source /projects/c838048135@colostate.edu/miniconda3/etc/profile.d/conda.sh
 conda activate angsd_lcpipe
 
 zcat "$DIR/angsdput_chrOW240912.1.mafs.gz" | cut -f5 | sed 1d > "$DIR/freq_OW240912.1"

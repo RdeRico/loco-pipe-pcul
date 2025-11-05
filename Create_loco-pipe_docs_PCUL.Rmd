@@ -27,14 +27,14 @@ breeding <- breeding %>%
   dplyr::select(sample,bam,Population) %>%
   rename(sample_name=sample)
 
-write_tsv(breeding, file = "docs/PCUL_sample_table.tsv")
+#write_tsv(breeding, file = "docs/PCUL_sample_table.tsv")
 ```
 
 ## inds_list file in .txt format for ngsrelate
 ```{r}
 inds <- breeding %>% select(sample_name)
 
-write_tsv(inds, file = "ngsrelate/inds_list.txt", col_names = FALSE)
+#write_tsv(inds, file = "ngsrelate/inds_list.txt", col_names = FALSE)
 ```
 
 

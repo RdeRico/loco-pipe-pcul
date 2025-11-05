@@ -1,5 +1,5 @@
 ##################################
-## plot pcangsd -admix for COYE ##
+## plot pcangsd -admix for PCUL ##
 ##################################
 
 ###########################################################
@@ -50,29 +50,56 @@ pop_alpha <- as.tibble(inds$Population) %>%
   rename(loc=value) %>%
   distinct() %>%
   dplyr::mutate(population = case_when(
-    loc == "COYE_CA_Olema" ~ "A",
-    loc == "COYE_CA_Oceanside" ~ "B",
-    loc == "COYE_WA_Graham" ~ "C",
-    loc == "COYE_AK_MitkofIsland" ~ "D",
-    loc == "COYE_NV_CaveCreek" ~ "E",
-    loc == "COYE_AB_JasperNationalPark" ~ "F",
-    loc == "COYE_BC_BC1" ~ "G",
-    loc == "COYE_MT_SeelyLake" ~ "H",
-    loc == "COYE_WY_KeyholeBandingStation" ~ "I",
-    loc == "COYE_WY_AtlatnicCity" ~ "J",
-    loc == "COYE_NM_Roswell" ~ "K",
-    loc == "COYE_AZ_AZ1" ~ "L",
-    loc == "COYE_KS_JunctionCity" ~ "M",
-    loc == "COYE_KY_Harrodsburg" ~ "N",
-    loc == "COYE_MI_Augusta" ~ "O",
-    loc == "COYE_QUE_Normandin" ~ "P",
-    loc == "COYE_ON_Hilliardton" ~ "Q",
-    loc == "COYE_NY_Hilton" ~ "R",
-    loc == "COYE_PA_Schnecksville" ~ "S",
-    loc == "COYE_NB_BurpeeWildlifeRefuge" ~ "T",
-    loc == "COYE_NC_AshleyHeights" ~ "U",
-    loc == "COYE_AL_Midway" ~ "V",
-    loc == "COYE_FL_LakePlacid" ~ "W"))  
+    loc == "OGV" ~ "AA",
+    loc == "MDL" ~ "AB",
+    loc == "ADG" ~ "AC",
+    loc == "ANV" ~ "AD",
+    loc == "SCD" ~ "AE",
+    loc == "MIN" ~ "AF",
+    loc == "RBN" ~ "AG",
+    loc == "VDB" ~ "AH",
+    loc == "BRC" ~ "AI",
+    loc == "GDS" ~ "AJ",
+    loc == "VDM" ~ "AK",
+    loc == "VAL" ~ "AL",
+    loc == "SDN" ~ "AM",
+    loc == "ROY" ~ "AN",
+    loc == "AUT" ~ "AO",
+    loc == "BRD" ~ "AP",
+    loc == "RDJ" ~ "AQ",
+    loc == "SER" ~ "AR",
+    loc == "TOR" ~ "AS",
+    loc == "LDC" ~ "AT",
+    loc == "SNC" ~ "AU",
+    loc == "CLP" ~ "AV",
+    loc == "ORI" ~ "AW",
+    loc == "LRC" ~ "AX",
+    loc == "VDS" ~ "BA",
+    loc == "HOM" ~ "BB",
+    loc == "CAN" ~ "BC",
+    loc == "VMC" ~ "BD",
+    loc == "HUM" ~ "BE",
+    loc == "MNB" ~ "BF",
+    loc == "ROB" ~ "BG",
+    loc == "ACB" ~ "BH",
+    loc == "CDB" ~ "BI",
+    loc == "VDG" ~ "BJ",
+    loc == "MDC" ~ "BK",
+    loc == "BDC" ~ "BL",
+    loc == "MOR" ~ "BM",
+    loc == "MDM" ~ "BN",
+    loc == "ALV" ~ "BO",
+    loc == "ROS" ~ "BP",
+    loc == "RPS" ~ "BQ",
+    loc == "SBC" ~ "BR",
+    loc == "PDG" ~ "BS",
+    loc == "DNN" ~ "BT",
+    loc == "GER" ~ "BV",
+    loc == "BNL" ~ "BW",
+    loc == "LLM" ~ "BX",
+    loc == "LOJ" ~ "BY"))  
+
+#Falta DLF 
 
 K2_eig1_alpha0$sampleID <- inds$sample_name
 K2_eig1_alpha0$loc <- inds$Population
