@@ -16,10 +16,10 @@
 to_include:
 
   # To call SNPs with all samples.
-  snp_calling_global: true
+  snp_calling_global: false
   
   # To perform PCA using PCAngsd for all samples and plot the result. 
-  run_pcangsd_global: true
+  run_pcangsd_global: false
   
   # To perform PCA using PCAngsd for each population separately and plot the result. 
   run_pcangsd_local: false
@@ -37,7 +37,7 @@ to_include:
   get_fst: false
 
   # To estimate the genome-wide average heterozygosity for each sample separately and plot the result.
-  get_heterozygosity: false
+  get_heterozygosity: true
   
   # To get different estimates of theta (e.g. nucleotide diversity π, Watterson's theta)
   # as well as neutrality test statistics (e.g. Tajima's D) for each population 
@@ -86,7 +86,7 @@ global:
   # chromosome/scaffold/contig names that you would like to include in the analysis. These should exactly match
   # the names in the reference genome. The second column is optional, and it should contain the new names
   # that would be shown in Manhattan-style plots. Shorter, simpler names are recommended for clarity of the plots.
-  chr_table: "chr_table.PCUL_more100kb.txt"
+  chr_table: "chr_table.PCUL_onlychromosomes.txt"
   
   # The genotype likelihood model to be used in ANGSD. Enter 1 for the Samtools model and 2 for the GATK model. 
   # See https://www.popgen.dk/angsd/index.php/Genotype_Likelihoods for details.
@@ -180,7 +180,7 @@ snp_calling_global:
   # They can also be used to specify additional filters or additional analyses.
   # For example, users can use the "-site" flag here to constrain analysis on a predefined set of SNPs
   # Or, users can use the "-rmTriallelic" flag followed by a p-value threshold to remove sites with more than two alleles.
-  extra: "-skipTriallelic 1 -baq 2 -uniqueOnly 1 "
+  extra: "-skipTriallelic 1 -baq 2 -uniqueOnly 1 -sites angsd/snp_calling/combined.snp_list"
 
 # -----------------------------------------------------------------------------------------------------------------------
 # The following parameters are needed by the "subset_snp_list.smk" file to thin the SNP list and 
