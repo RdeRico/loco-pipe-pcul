@@ -22,11 +22,9 @@
 #number of nodes
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node 1
+#SBATCH --cpus-per-task=4
 #################
-# CPUs required (ANGSD realSFS uses them)
-#SBATCH --cpus-per-task=16
-#################
-#SBATCH --mem=64G
+#SBATCH --mem=8G
 #################
 #get emailed about job BEGIN, END, and FAIL
 #SBATCH --mail-type=END
