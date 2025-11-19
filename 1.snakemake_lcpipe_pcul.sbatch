@@ -16,8 +16,8 @@
 #SBATCH -t 48:00:00
 #################
 #quality of service; think of it as job priority
-#SBATCH -p amilan128c,amilan
-#SBATCH --qos=long
+#SBATCH -p amem
+#SBATCH --qos=mem
 #################
 #number of nodes
 #SBATCH --nodes=1
