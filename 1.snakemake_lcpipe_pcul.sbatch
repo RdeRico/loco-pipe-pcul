@@ -16,14 +16,14 @@
 #SBATCH -t 48:00:00
 #################
 #quality of service; think of it as job priority
-#SBATCH -p amem
-#SBATCH --qos=mem
+#SBATCH -p amilan128c,amilan
+#SBATCH --qos=long
 #################
 #number of nodes
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node 1
 #################
-#SBATCH --mem=256G
+#SBATCH --mem=3G
 #################
 #get emailed about job BEGIN, END, and FAIL
 #SBATCH --mail-type=END
