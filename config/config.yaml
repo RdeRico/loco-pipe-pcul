@@ -334,7 +334,7 @@ get_heterozygosity:
   # The number of threads in the cluster needed for this job.
   # A thread could be seen as a computing unit. Generally, the more threads you assign,
   # the faster the job could be done. For this step, the realSFS in ANGSD module is capable of using more than 8 threads.
-  threads: 8
+  threads: 4
   
   # The minimum base quality score.
   # Sequencing data below this threshold will be filtered out and not included in the heterozygosity estimation.
