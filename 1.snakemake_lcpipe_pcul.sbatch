@@ -13,11 +13,11 @@
 #################
 #time you think you need; default is one hour
 #in minutes in this case
-#SBATCH -t 72:00:00
+#SBATCH -t 24:00:00
 #################
 #quality of service; think of it as job priority
 #SBATCH -p amilan
-#SBATCH --qos=long
+#SBATCH --qos=normal
 #################
 #number of nodes
 #SBATCH --nodes=1
@@ -49,5 +49,5 @@ snakemake \
   --latency-wait 300 \
   --snakefile $SOFTWARE_DIR/loco-pipe/workflow/pipelines/loco-pipe.smk \
   --profile $SOFTWARE_DIR/loco-pipe/workflow/profiles/slurm \
-  --jobs 2 \
+  --jobs 1 \
   --default-resources mem_mb=None disk_mb=None
