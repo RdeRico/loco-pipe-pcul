@@ -49,5 +49,5 @@ snakemake \
   --latency-wait 300 \
   --snakefile $SOFTWARE_DIR/loco-pipe/workflow/pipelines/loco-pipe.smk \
   --profile $SOFTWARE_DIR/loco-pipe/workflow/profiles/slurm \
-  --jobs 10 \
+  --jobs 8 \
   --default-resources mem_mb=None disk_mb=None
