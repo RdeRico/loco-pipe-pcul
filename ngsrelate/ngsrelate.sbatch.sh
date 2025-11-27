@@ -28,7 +28,7 @@ N_IND=$(wc -l < $BAMS)
 
 # Run NgsRelate
 echo "Running NgsRelate..."
-ngsrelate -g "$DIR/angsdput_chrOW240912.1.glf.gz" -p 32 -n $N_IND -z $INDS -f "$DIR/freq_OW240912.1" -O "$DIR/relatedness_chr1" &> "$DIR/ngsrelate_chr1.log"
-ngsrelate -g "$DIR/angsdput_chrOW240913.1.glf.gz" -p 32 -n $N_IND -z $INDS -f "$DIR/freq_OW240913.1" -O "$DIR/relatedness_chr2" &> "$DIR/ngsrelate_chr2.log"
+ngsRelate -g "$DIR/angsdput_chrOW240912.1.glf.gz" -p 32 -n $N_IND -z $INDS -f "$DIR/freq_OW240912.1" -O "$DIR/relatedness_chr1" &> "$DIR/ngsrelate_chr1.log"
+ngsRelate -g "$DIR/angsdput_chrOW240913.1.glf.gz" -p 32 -n $N_IND -z $INDS -f "$DIR/freq_OW240913.1" -O "$DIR/relatedness_chr2" &> "$DIR/ngsrelate_chr2.log"
 
 echo "Analysis complete!"
