@@ -1,0 +1,141 @@
+---
+title: "selected_pops"
+author: "Rafa Rico"
+date: "2025-12-02"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+
+
+# Install from GitHub
+#remotes::install_local("/Users/rafa/Downloads/popgensampler-main")
+
+```
+
+```{r}
+library(popgensampler)
+library(tidyverse)
+library(geosphere)
+library(here)
+```
+
+```{r}
+example_data <- read.csv(system.file("extdata", "sample_metadata.csv", 
+                                     package = "popgensampler"))
+```
+
+
+```{r}
+ponds<-read_csv("Ponds.csv")%>%
+  select(-descripción)%>%
+  mutate(clutch = nombre,
+         lon=str_extract(WKT, "\\(-?\\d+.\\d+") %>%
+           str_remove("\\(") %>%
+           as.numeric(),
+         lat=str_extract(WKT, "\\d+.\\d+\\)") %>%
+           str_remove("\\)")%>%
+           as.numeric(),
+        .keep =('unused'))
+
+ponds
+```
+
+```{r}
+coords <- ponds%>%
+  mutate(Population = substr(clutch,1, 3),
+         Population = gsub("Ñ", "N", Population))%>%
+  group_by(Population)%>%
+  summarise(lat = mean(lat),
+            lon = mean(lon))%>%
+  filter(Population != "ALM",
+         Population != "DLF",
+         Population != "FOI",
+         Population != "GRN",
+         Population != "SMA",)
+coords
+```
+
+```{r}
+inds <- read_tsv("docs/PCUL_sample_table.tsv") %>%
+  dplyr::select(sample_name, Population)%>%
+  mutate(Population = case_when(
+    str_detect(Population, "^ACB") ~ str_replace(Population, "^ACB", "CDR"),
+    str_detect(Population, "^ROB") ~ str_replace(Population, "^ROB", "CDR"),
+    TRUE ~ Population))%>%
+  select(Population, Ind=sample_name) %>%
+  inner_join(coords, by="Population")
+inds
+```
+
+
+
+```{r}
+coords_ind <- inds %>% select(lon, lat)
+dist_matrix <- distm(as.matrix(coords_ind), fun = distHaversine)
+hclust_groups <- hclust(as.dist(dist_matrix), method = "complete")
+inds$Pop <- paste0("Cluster_", cutree(hclust_groups, h = 111111))
+
+inds
+```
+
+Mapping clusters
+
+```{r}
+library(ggplot2)
+library(rnaturalearth)
+library(sf)
+
+library(ggrepel)
+```
+
+
+
+```{r}
+mapa_base <- ne_countries(scale = "medium", 
+                          country = c("Spain", "Portugal"), 
+                          returnclass = "sf")
+
+ggplot (data=mapa_base) +
+  # Capa del mapa base
+  geom_sf(fill = "#F0F0F0", color = "gray60", size = 0.3) +
+  
+  # Capa de tus datos 
+  geom_point(data = inds,
+             aes(x = lon, y = lat,
+                 size = 3, 
+                 color = as.factor(Population)),
+             alpha = 0.8) + # Transparencia para ver solapamientos
+  
+  # ETIQUETAS INTELIGENTES (La parte clave)
+  geom_text_repel(data = inds,
+                  aes(x = lon, y = lat, 
+                      label = Pop), # Aquí va el nombre
+                  size = 3,           # Tamaño de la letra
+                  box.padding = 0.5,  # Espacio alrededor del texto
+                  max.overlaps = 20,  # Oculta etiquetas si hay demasiadas encimadas
+                  min.segment.length = 0) + # Dibuja siempre la línea conectora
+
+  # Zoom a la Península
+  coord_sf(xlim = c(-10, 5), ylim = c(35, 44), expand = FALSE) +
+
+  # Estética
+  scale_color_viridis_d(name = "Cluster") +
+  labs(title = "Ubicación de Poblaciones por Cluster") +
+  theme_minimal() +
+  theme(
+    panel.background = element_rect(fill = "aliceblue", color = NA),
+    axis.title = element_blank()
+  )
+```
+
+
+
+
+
+
+

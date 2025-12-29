@@ -1,0 +1,215 @@
+---
+title: "relatedness"
+author: "Rafa Rico"
+date: "2025-11-28"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Modified code from https://hackmd.io/@MEC-lab-team/r1XvULhVxx
+
+Libraries
+
+```{r}
+library(here)
+library(dplyr)
+library(tidyverse)
+```
+
+Data
+
+```{r}
+here("/ngsrelate")
+chr1 <- read.table("relatedness_chr1", header = T)
+chr2 <- read.table("relatedness_chr2", header = T)
+pop <- read_csv("../gen_samples.csv")
+```
+
+Using the relatedness metric rab - (Hedrick & Lacy's relatedness estimator)
+
+```{r}
+ngs_matrix <- chr1 %>% select(ida, idb, rab)
+```
+
+Convert to wide form: create a symmetrical matrix with individuals as rows and columns.
+
+```{r}
+# Create a symmetrical matrix
+
+relatedness_matrix <- ngs_matrix %>%
+  pivot_wider(names_from = idb, values_from = rab) %>%
+  column_to_rownames("ida")
+
+# Ensure symmetry
+relatedness_matrix[lower.tri(relatedness_matrix)] <- t(relatedness_matrix)[lower.tri(relatedness_matrix)]
+
+```
+
+#Heatmap
+
+```{r}
+library(pheatmap)
+
+library(RColorBrewer)
+#display.brewer.all(colorblindFriendly = T)
+heat_colors <- brewer.pal(6, "OrRd")
+
+pheatmap(relatedness_matrix, color=heat_colors,
+         cluster_rows = TRUE, 
+         cluster_cols = TRUE,
+         display_numbers = FALSE,
+         main = "Pairwise Relatedness (rab)")
+```
+
+#Stacked bar Plots
+
+Add population info for ida and idb
+
+```{r}
+chr1 <- chr1 %>% left_join(pop,by=c("ida" = "sample_name")) %>% rename(PopA = population)
+
+chr1 <- chr1 %>% left_join(pop,by=c("idb" = "sample_name")) %>% rename(PopB = population)
+```
+
+Create combined population pair (alphabetical order to avoid duplicates) 
+
+```{r}
+chr1 <- chr1 %>%
+  mutate(PopPair = ifelse(PopA < PopB,
+                          paste(PopA, PopB, sep = "."),
+                          paste(PopB, PopA, sep = ".")))
+```
+
+```{r}
+pops_chr1 <- chr1 %>% filter(PopA==PopB)
+```
+
+
+## Within-pop comparisons 
+
+Filter to within-population comparisons
+
+```{r}
+within_df <- chr1 %>% filter(PopA == PopB)%>%
+  select(ida, idb, )
+```
+
+Stacked bar plot
+
+```{r}
+# Define bin levels and breaks
+rab_levels <- c("0-0.1", "0.1-0.2", "0.2-0.3", "0.3-0.4", 
+                "0.4-0.5", "0.5-0.6", "0.6-1")
+rab_breaks <- c(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 1)
+
+# Bin rab values
+within_df$rab_bin <- cut(within_df$rab,
+                         breaks = rab_breaks,
+                         labels = rab_levels,
+                         include.lowest = TRUE, # This ensures that the very first bin includes the lowest value
+                         right = TRUE) #right=TRUE is to specify that the upper bound is included (i.e. 0.01 is included in the interval [0,0.01])
+
+# Summarize counts per population and bin
+stacked_df <- within_df %>%
+  group_by(PopPair, rab_bin) %>% # Group data by both Pop pair and rab_bin
+  summarise(count = n(), .groups = "drop") %>% # Count how many pairwise comparisons falls into that bin for that PopPair. .groups = "drop" tells dplyr to remove all grouping after this step cuz the next function 'complete' expects an ungrouped data frame 
+  complete(PopPair, rab_bin = rab_levels, fill = list(count = 0)) %>% #ensures all combinations of PopPair and rab_bin exist in the dataset, even if they were missing. So if there are no rab values between 0.04 and 0.08 for a PopPair, it will set the count to 0. 
+  group_by(PopPair) %>% #Regroup by PopPair
+  mutate(proportion = count / sum(count)) %>%
+  ungroup() #Removes grouping structure again, leaving a clean, regular data.frame that’s ready for plotting 
+
+```
+
+
+plotting
+
+```{r}
+p <- ggplot(stacked_df, aes(x = factor(PopPair), y = proportion, fill = factor(rab_bin))) +
+  geom_bar(stat = "identity",width=0.5) + coord_flip() +
+  ylab("Proportion of pairwise comparisons") +
+  xlab("Population") +
+  scale_fill_grey(name = "Pairwise relatedness") +
+  scale_y_continuous(labels = c(
+    "0.00" = "0",
+    "0.25" = "0.25",
+    "0.50" = "0.5",
+    "0.75" = "0.75",
+    "1.00" = "1"),expand = c(0, 0))+
+  theme_classic() +
+  theme(axis.text=element_text(size=20),
+        axis.title=element_text(size=22,face="bold"),
+        legend.text = element_text(size = 20),
+        legend.title = element_text(size = 22,face="bold"))
+
+print(p)
+```
+
+
+#Heatmap with mean rab for each PopPair
+
+Calculate mean and std dev for each PopPair
+
+```{r}
+heat_df <- chr1 %>%
+  group_by(PopPair) %>%
+  summarise(
+    mean_rab = mean(rab, na.rm = TRUE),
+    sd_rab = sd(rab, na.rm = TRUE),.groups = "drop")
+
+```
+
+Split PopPair into two columns for heatmap
+
+```{r}
+heat_df <- heat_df %>%
+  separate(PopPair, into = c("PopA", "PopB"), sep = "\\.")
+
+# Make it symmetric
+symmetric_df <- bind_rows(
+  heat_df,
+  heat_df %>% rename(PopA = PopB, PopB = PopA)
+)
+```
+
+Calculate mask after factor conversion
+
+```{r}
+population_order <- unique(symmetric_df$PopA)
+symmetric_df$PopA <- factor(symmetric_df$PopA, levels = rev(population_order))
+symmetric_df$PopB <- factor(symmetric_df$PopB, levels = rev(population_order))
+```
+
+
+```{r}
+symmetric_df <- symmetric_df %>% distinct() %>%
+  mutate(
+    mask = as.integer(PopA) > as.integer(PopB),  # Lower triangle
+    mean_rab_masked = ifelse(mask, NA, mean_rab) # Set to NA if in lower triangle
+  )
+```
+
+Plot
+```{r}
+library(RColorBrewer)
+heat_colors <- brewer.pal(6, "OrRd")
+```
+
+```{r}
+ggplot(symmetric_df, aes(x = PopA, y = PopB, fill = mean_rab_masked)) +
+  geom_tile(color = "white") +
+  geom_tile(data = subset(symmetric_df, is.na(mean_rab_masked)), fill = "grey", color = "white") +  # Black fill for masked cells
+  #geom_text(aes(label = ifelse(!is.na(mean_rab_masked), sprintf("%.6f", mean_rab_masked), "")), size = 6) +
+  scale_fill_gradientn(colors = heat_colors, name = "Mean pairwise relatedness",labels = function(x) sprintf("%.6f", x),
+                       na.value = "black") +  # Also ensures NA fill is black
+  coord_fixed() +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.title = element_blank(),
+    legend.key.height = unit(1, "cm")
+  )
+```
+
