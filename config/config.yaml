@@ -16,10 +16,10 @@
 to_include:
 
   # To call SNPs with all samples.
-  snp_calling_global: false
+  snp_calling_global: true
   
   # To perform PCA using PCAngsd for all samples and plot the result. 
-  run_pcangsd_global: false
+  run_pcangsd_global: true
   
   # To perform PCA using PCAngsd for each population separately and plot the result. 
   run_pcangsd_local: false
@@ -37,7 +37,7 @@ to_include:
   get_fst: false
 
   # To estimate the genome-wide average heterozygosity for each sample separately and plot the result.
-  get_heterozygosity: true
+  get_heterozygosity: false
   
   # To get different estimates of theta (e.g. nucleotide diversity π, Watterson's theta)
   # as well as neutrality test statistics (e.g. Tajima's D) for each population 
@@ -58,18 +58,18 @@ global:
 
   # Full path of the project base directory. 
   # This folder should contain subfolders such as "config" and "docs".
-  basedir: "/home/c838048135@colostate.edu/scratch/pelobates_plasticity/loco-pipe-pcul"
+  basedir: "/home/csic/eye/rrm/lustre/pelobates_plasticity/loco-pipe-pcul"
   
   # Full path of the reference genome.
   # The reference genome should be in fasta format. Under the current version, we recommend reference genome 
   # to be approximately at chromosome level. In other words, we advice against a highly fragmented reference genome
   # (e.g. L80 > 100). Due to the fact that many downstream analyses are performed at chromosome/scaffold/contig level,
   # having a highly-fragmented reference genome will create too many parallel jobs and might put cluster in high stress.
-  reference: "/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/resources/genome.fasta"
+  reference: "/home/csic/eye/rrm/lustre/pelobates_plasticity/mega-non-model-wgs-snakeflow/resources/genome.fasta"
 
   # Full path of the folder in which R scripts required for the pipeline are saved (i.e. you will need to change the 
   # "/path/to/" part to the path where loco-pipe is downloaded on your computer.)
-  scriptdir: "/home/c838048135@colostate.edu/projects/soft/loco-pipe/workflow/scripts"
+  scriptdir: "/home/csic/eye/rrm/store/soft/loco-pipe/workflow/scripts"
   
   # The name of the tab-separated sample table file.
   # It should include at least three columns: "sample_name", "bam", and a third column that specifies the grouping 
@@ -86,7 +86,7 @@ global:
   # chromosome/scaffold/contig names that you would like to include in the analysis. These should exactly match
   # the names in the reference genome. The second column is optional, and it should contain the new names
   # that would be shown in Manhattan-style plots. Shorter, simpler names are recommended for clarity of the plots.
-  chr_table: "chr_table.PCUL_onlychromosomes.txt"
+  chr_table: "chr_table.PCUL_more100kb.txt"
   
   # The genotype likelihood model to be used in ANGSD. Enter 1 for the Samtools model and 2 for the GATK model. 
   # See https://www.popgen.dk/angsd/index.php/Genotype_Likelihoods for details.
@@ -160,7 +160,7 @@ snp_calling_global:
   # automatically applied in this step, we often choose a relatively relaxed minind filter. 
   # For example, with coverage around 1-2x among samples,
   # we often use half of the total sample size (i.e. 0.5).
-  minind_proportion: "0.5"
+  minind_proportion: "0.7"
  
   # This filter is used in combination with "minind_proportion" (see above). The default setting is 1, 
   # meaning that a sample needs to have at least 1 read at a site for it to be counted for the "minind" filter.
@@ -173,14 +173,14 @@ snp_calling_global:
   
   # Threshold for a site to be considered as a SNP based on its p-value.
   # The site that has a p-value larger than "pval" will be filtered out.
-  pval: "1e-6"
+  pval: "1e-8"
   
   # Optional arguments to be passed to the SNP calling step in ANGSD.
   # These arguments could add extra input files to analyses (e.g. ancestral genome and individual inbreed coefficients). 
   # They can also be used to specify additional filters or additional analyses.
   # For example, users can use the "-site" flag here to constrain analysis on a predefined set of SNPs
   # Or, users can use the "-rmTriallelic" flag followed by a p-value threshold to remove sites with more than two alleles.
-  extra: "-skipTriallelic 1 -baq 2 -uniqueOnly 1 -sites angsd/snp_calling/combined.snp_list"
+  extra: "-skipTriallelic 1 -baq 2 -uniqueOnly 1 -sb 1"
 
 # -----------------------------------------------------------------------------------------------------------------------
 # The following parameters are needed by the "subset_snp_list.smk" file to thin the SNP list and 
@@ -334,7 +334,7 @@ get_heterozygosity:
   # The number of threads in the cluster needed for this job.
   # A thread could be seen as a computing unit. Generally, the more threads you assign,
   # the faster the job could be done. For this step, the realSFS in ANGSD module is capable of using more than 8 threads.
-  threads: 32
+  threads: 8
   
   # The minimum base quality score.
   # Sequencing data below this threshold will be filtered out and not included in the heterozygosity estimation.
