@@ -15,9 +15,7 @@
 #in minutes in this case
 #SBATCH -t 24:00:00
 #################
-#quality of service; think of it as job priority
-#SBATCH -p amilan
-#SBATCH --qos=normal
+
 #################
 #number of nodes
 #SBATCH --nodes=1
@@ -29,7 +27,7 @@
 #SBATCH --mail-type=END
 #################
 #who to send email to; please change to your email
-#SBATCH  --mail-user=rafa.ricomillan@colostate.edu
+#SBATCH  --mail-user=rafael.rico@ebd.csic.es
 #################
 #now run normal batch commands
 ##################
@@ -37,8 +35,8 @@
 set -x
 source ~/.bashrc
 conda activate loco-pipe
-DIR=/scratch/alpine/c838048135@colostate.edu/pelobates_plasticity/loco-pipe-pcul
-SOFTWARE_DIR=/projects/c838048135@colostate.edu/soft
+DIR=/home/csic/eye/rrm/lustre/pelobates_plasticity/loco-pipe-pcul
+SOFTWARE_DIR=/home/csic/eye/rrm/store/soft
 snakemake \
   --use-conda \
   --conda-frontend mamba \
