@@ -18,16 +18,24 @@ library(tidyverse)
 
 
 breeding <- read_csv("gen_samples.csv") %>%
-  dplyr::select(sample_name,population)
+  dplyr::select(sample_name,population)%>%
+  mutate(population = case_when(
+    str_detect(population, "^ACB") ~ str_replace(population, "^ACB", "CDR"),
+    str_detect(population, "^ROB") ~ str_replace(population, "^ROB", "CDR"),
+    str_detect(population, "^SBC") ~ str_replace(population, "^SBC", "HNO"),
+    str_detect(population, "^PDG") ~ str_replace(population, "^PDG", "HNO"),
+    str_detect(population, "^BNL") ~ str_replace(population, "^BNL", "JND"),
+    str_detect(population, "^LLM") ~ str_replace(population, "^LLM", "JND"),
+    TRUE ~ population))
 
 breeding <- breeding %>%
   rename(sample=sample_name) %>%
   rename(Population=population) %>%
-  mutate(bam=paste0("/home/c838048135@colostate.edu/scratch/pelobates_plasticity/mega-non-model-wgs-snakeflow/results/bqsr-round-0/mkdup/",sample,".bam")) %>%
+  mutate(bam=paste0("/home/csic/eye/rrm/lustre/pelobates_plasticity/mega-non-model-wgs-snakeflow/mkdup/",sample,".bam")) %>%
   dplyr::select(sample,bam,Population) %>%
   rename(sample_name=sample)
 
-#write_tsv(breeding, file = "docs/PCUL_sample_table.tsv")
+write_tsv(breeding, file = "docs/PCUL_sample_table.tsv")
 ```
 
 ## inds_list file in .txt format for ngsrelate

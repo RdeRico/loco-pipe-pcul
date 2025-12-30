@@ -32,6 +32,10 @@
 #now run normal batch commands
 ##################
 #echo commands to stdout
+
+#Cleaning 
+module purge
+
 set -x
 source ~/.bashrc
 conda activate loco-pipe
