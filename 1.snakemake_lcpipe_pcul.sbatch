@@ -49,7 +49,7 @@ eval "$(conda shell.bash hook)"
 unset R_LIBS R_LIBS_USER R_LIBS_SITE
 export R_LIBS_USER=""
 
-conda activate loco-pipe
+conda activate /mnt/netapp1/Store_CSIC/home/csic/eye/rrm/miniconda3/envs/loco-pipe
 DIR=/home/csic/eye/rrm/lustre/pelobates_plasticity/loco-pipe-pcul
 SOFTWARE_DIR=/home/csic/eye/rrm/store/soft
 snakemake \
