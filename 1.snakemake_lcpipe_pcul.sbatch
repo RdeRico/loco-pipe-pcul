@@ -45,6 +45,9 @@ module load miniconda3
 # 3. Inicializa Conda de forma limpia (sustituye a source ~/.bashrc)
 eval "$(conda shell.bash hook)"
 
+#path for envs
+conda config --append envs_dirs /mnt/netapp1/Store_CSIC/home/csic/eye/rrm/miniconda3/envs
+
 # 4. Limpia variables de R para evitar conflictos
 unset R_LIBS R_LIBS_USER R_LIBS_SITE
 export R_LIBS_USER=""
