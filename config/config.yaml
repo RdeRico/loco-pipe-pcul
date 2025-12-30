@@ -160,7 +160,7 @@ snp_calling_global:
   # automatically applied in this step, we often choose a relatively relaxed minind filter. 
   # For example, with coverage around 1-2x among samples,
   # we often use half of the total sample size (i.e. 0.5).
-  minind_proportion: "0.7"
+  minind_proportion: "0.5"
  
   # This filter is used in combination with "minind_proportion" (see above). The default setting is 1, 
   # meaning that a sample needs to have at least 1 read at a site for it to be counted for the "minind" filter.
@@ -180,7 +180,7 @@ snp_calling_global:
   # They can also be used to specify additional filters or additional analyses.
   # For example, users can use the "-site" flag here to constrain analysis on a predefined set of SNPs
   # Or, users can use the "-rmTriallelic" flag followed by a p-value threshold to remove sites with more than two alleles.
-  extra: "-skipTriallelic 1 -baq 2 -uniqueOnly 1 -doStrandBias 1 -strandPval 1e-6"
+  extra: "-skipTriallelic 1 -baq 2 -uniqueOnly 1"
 
 # -----------------------------------------------------------------------------------------------------------------------
 # The following parameters are needed by the "subset_snp_list.smk" file to thin the SNP list and 
