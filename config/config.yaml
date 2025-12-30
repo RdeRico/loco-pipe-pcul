@@ -180,7 +180,7 @@ snp_calling_global:
   # They can also be used to specify additional filters or additional analyses.
   # For example, users can use the "-site" flag here to constrain analysis on a predefined set of SNPs
   # Or, users can use the "-rmTriallelic" flag followed by a p-value threshold to remove sites with more than two alleles.
-  extra: "-skipTriallelic 1 -baq 2 -uniqueOnly 1 -sb 1"
+  extra: "-skipTriallelic 1 -baq 2 -uniqueOnly 1 -doStrandBias 1 -strandPval 1e-6"
 
 # -----------------------------------------------------------------------------------------------------------------------
 # The following parameters are needed by the "subset_snp_list.smk" file to thin the SNP list and 
