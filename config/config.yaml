@@ -173,7 +173,7 @@ snp_calling_global:
   
   # Threshold for a site to be considered as a SNP based on its p-value.
   # The site that has a p-value larger than "pval" will be filtered out.
-  pval: "1e-8"
+  pval: "1e-6"
   
   # Optional arguments to be passed to the SNP calling step in ANGSD.
   # These arguments could add extra input files to analyses (e.g. ancestral genome and individual inbreed coefficients). 
