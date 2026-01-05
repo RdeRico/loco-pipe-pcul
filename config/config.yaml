@@ -90,7 +90,7 @@ global:
   
   # The genotype likelihood model to be used in ANGSD. Enter 1 for the Samtools model and 2 for the GATK model. 
   # See https://www.popgen.dk/angsd/index.php/Genotype_Likelihoods for details.
-  gl_model: 1
+  gl_model: 2
   
   # Type of reference genome. Enter 0 if the reference genome is either ancestral or from an outgroup, and 1 if not.
   # If 0 is entered, loco-pipe will estimates unfolded SFS for certain analytical steps. 
