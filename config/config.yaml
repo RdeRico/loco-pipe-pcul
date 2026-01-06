@@ -90,7 +90,7 @@ global:
   
   # The genotype likelihood model to be used in ANGSD. Enter 1 for the Samtools model and 2 for the GATK model. 
   # See https://www.popgen.dk/angsd/index.php/Genotype_Likelihoods for details.
-  gl_model: 2
+  gl_model: 1
   
   # Type of reference genome. Enter 0 if the reference genome is either ancestral or from an outgroup, and 1 if not.
   # If 0 is entered, loco-pipe will estimates unfolded SFS for certain analytical steps. 
@@ -173,14 +173,14 @@ snp_calling_global:
   
   # Threshold for a site to be considered as a SNP based on its p-value.
   # The site that has a p-value larger than "pval" will be filtered out.
-  pval: "1e-6"
+  pval: "1e-8"
   
   # Optional arguments to be passed to the SNP calling step in ANGSD.
   # These arguments could add extra input files to analyses (e.g. ancestral genome and individual inbreed coefficients). 
   # They can also be used to specify additional filters or additional analyses.
   # For example, users can use the "-site" flag here to constrain analysis on a predefined set of SNPs
   # Or, users can use the "-rmTriallelic" flag followed by a p-value threshold to remove sites with more than two alleles.
-  extra: "-skipTriallelic 1 -baq 2 -uniqueOnly 1"
+  extra: "-skipTriallelic 1 -baq 2 -uniqueOnly 1 -minMapQ 40"
 
 # -----------------------------------------------------------------------------------------------------------------------
 # The following parameters are needed by the "subset_snp_list.smk" file to thin the SNP list and 
