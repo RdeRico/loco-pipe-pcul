@@ -160,7 +160,7 @@ snp_calling_global:
   # automatically applied in this step, we often choose a relatively relaxed minind filter. 
   # For example, with coverage around 1-2x among samples,
   # we often use half of the total sample size (i.e. 0.5).
-  minind_proportion: "0.75"
+  minind_proportion: "0.5"
  
   # This filter is used in combination with "minind_proportion" (see above). The default setting is 1, 
   # meaning that a sample needs to have at least 1 read at a site for it to be counted for the "minind" filter.
