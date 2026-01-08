@@ -33,8 +33,8 @@
 set -x
 source ~/.bashrc
 conda activate loco-pipe
-DIR=/scratch/alpine/c838048135@colostate.edu/pelobates_plasticity/loco-pipe-pcul
-SOFTWARE_DIR=/projects/c838048135@colostate.edu/soft
+DIR=/home/csic/eye/rrm/lustre/pelobates_plasticity/loco-pipe-pcul
+SOFTWARE_DIR=/home/csic/eye/rrm/store/soft
 snakemake \
   --use-conda \
   --conda-frontend mamba \
