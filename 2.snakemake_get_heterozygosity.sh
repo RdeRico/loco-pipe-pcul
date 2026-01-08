@@ -15,21 +15,17 @@
 #in minutes in this case
 #SBATCH -t 48:00:00
 #################
-#quality of service; think of it as job priority
-#SBATCH -p amilan128c,amilan
-#SBATCH --qos=long
-#################
 #number of nodes
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node 1
 #################
-#SBATCH --mem=8G
+#SBATCH --mem=4G
 #################
 #get emailed about job BEGIN, END, and FAIL
 #SBATCH --mail-type=END
 #################
 #who to send email to; please change to your email
-#SBATCH  --mail-user=rafa.ricomillan@colostate.edu
+#SBATCH  --mail-user=rafael.rico@ebd.csic.es
 #################
 #now run normal batch commands
 ##################
