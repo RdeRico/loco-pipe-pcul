@@ -30,8 +30,22 @@
 #now run normal batch commands
 ##################
 #echo commands to stdout
-set -x
-source ~/.bashrc
+set -x 
+
+# 1. Limpieza total
+module purge
+
+# 2. Carga la arquitectura correcta (Rocky Linux) y el Conda del servidor
+module load cesga/system
+module load miniconda3
+
+# 3. Inicializa Conda de forma limpia (sustituye a source ~/.bashrc)
+eval "$(conda shell.bash hook)"
+
+# 4. Limpia variables de R para evitar conflictos
+unset R_LIBS R_LIBS_USER R_LIBS_SITE
+export R_LIBS_USER=""
+
 conda activate loco-pipe
 DIR=/home/csic/eye/rrm/lustre/pelobates_plasticity/loco-pipe-pcul
 SOFTWARE_DIR=/home/csic/eye/rrm/store/soft
